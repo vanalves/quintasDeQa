@@ -1,0 +1,25 @@
+
+#Arquivos de configruação do Intellij
+.idea/
+*.iml
+*.iws
+*.ipr
+
+#Arquivos de configruação do Maven
+target/
+
+#Arquivos de configruação de logs
+*.log
+
+#Arquivos compilados
+*.class
+
+#dependencias do Maven
+/.classpath
+/.factorypath
+/.settings/
+
+
+
+
+
