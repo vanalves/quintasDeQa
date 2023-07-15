@@ -105,7 +105,7 @@ public class LoginCadastroPage {
         return this;
     }
 
-    public inicialPage acessoUsuario(String usuario, String senha){
+    public InicialPage acessoUsuario(String usuario, String senha){
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(99));
         wait.until(ExpectedConditions.elementToBeClickable(By.id("loginusername")));
         WebElement elemUserName = this.navegador.findElement(By.id("loginusername"));
@@ -128,7 +128,7 @@ public class LoginCadastroPage {
             //handle the exception
         }
 
-return new inicialPage(navegador);
+return new InicialPage(navegador);
     }
 
     public ContactPage acessarContato(){
