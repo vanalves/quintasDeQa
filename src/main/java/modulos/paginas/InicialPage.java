@@ -9,51 +9,51 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class inicialPage {
+public class InicialPage {
     private WebDriver navegador;
 
     private WebDriverWait wait;
 
-    public inicialPage(WebDriver navegador) {
+    public InicialPage(WebDriver navegador) {
         this.navegador = navegador;
     }
 
-    public inicialPage selecionarCategoriaPhones(){
+    public InicialPage selecionarCategoriaPhones(){
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         navegador.findElement(By.linkText("Phones")).click();
         return this;
     }
-    public inicialPage escolherPhones() {
+    public InicialPage escolherPhones() {
         navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         navegador.findElement(By.linkText("Samsung galaxy s6")).click();
 
         return this;
     }
-    public inicialPage selecionarCategoriaLaptops(){
+    public InicialPage selecionarCategoriaLaptops(){
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         navegador.findElement(By.linkText("Laptops")).click();
         return this;
     }
-    public inicialPage escolherLaptops() {
+    public InicialPage escolherLaptops() {
         navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         navegador.findElement(By.linkText("Sony vaio i5")).click();
 
         return this;
     }
 
-    public inicialPage selecionarCategoriaMonitors(){
+    public InicialPage selecionarCategoriaMonitors(){
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         navegador.findElement(By.linkText("Monitors")).click();
         return this;
     }
-    public inicialPage escolherMonitors() {
+    public InicialPage escolherMonitors() {
         navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         navegador.findElement(By.linkText("Apple monitor 24")).click();
 
         return this;
     }
 
-    public inicialPage addProdutoNoCarrinho() {
+    public InicialPage addProdutoNoCarrinho() {
         navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         navegador.findElement(By.linkText("Add to cart")).click();
 
@@ -70,7 +70,7 @@ public class inicialPage {
         return this;
 
     }
-  public inicialPage voltarParaHomeDepoisDeAddProdutoNoCarrinho(){
+  public InicialPage voltarParaHomeDepoisDeAddProdutoNoCarrinho(){
             navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             navegador.findElement(By.xpath("/html/body/nav/div/div/ul/li[1]/a")).click();
 
@@ -78,7 +78,7 @@ public class inicialPage {
         return this;
     }
 
-    public inicialPage pagamentoProdutos() {
+    public InicialPage pagamentoProdutos() {
         navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         navegador.findElement(By.linkText("Cart")).click();
 
@@ -87,7 +87,7 @@ public class inicialPage {
 
     }
 
-    public inicialPage pagamentoButton() {
+    public InicialPage pagamentoButton() {
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         WebElement pagamentoButton = navegador.findElement(By.xpath("/html/body/div[6]/div/div[2]/button"));
         pagamentoButton.click();
@@ -96,7 +96,7 @@ public class inicialPage {
 
     }
 
-    public inicialPage cadastroDePagamento(String name, String country, String city, String numCartaoDeCredito, String mes, String ano) {
+    public InicialPage cadastroDePagamento(String name, String country, String city, String numCartaoDeCredito, String mes, String ano) {
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         WebElement elemName = this.navegador.findElement(By.xpath("//*[@id=\"name\"]"));
         elemName.sendKeys(name);
@@ -123,7 +123,7 @@ public class inicialPage {
         return this;
     }
 
-    public inicialPage finalizarCompra() {
+    public InicialPage finalizarCompra() {
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         WebElement elemPurchaseBtn = this.navegador.findElement(By.xpath("//html/body/div[3]/div/div/div[3]/button[2]"));
         elemPurchaseBtn.click();
@@ -135,14 +135,14 @@ public class inicialPage {
         return this;
     }
 
-    public inicialPage btnCancelar() {
+    public InicialPage btnCancelar() {
         this.navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(999));
         this.navegador.findElement(By.cssSelector("html body.modal-open div#orderModal.modal.fade.show div.modal-dialog div.modal-content div.modal-footer button.btn.btn-secondary")).click();
 
         return this;
     }
 
-    public inicialPage btnExcluir() {
+    public InicialPage btnExcluir() {
         navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         navegador.findElement(By.cssSelector("tr.success:nth-child(1) > td:nth-child(4) > a:nth-child(1)")).click();
 
