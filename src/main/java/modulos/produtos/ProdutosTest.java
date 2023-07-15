@@ -12,14 +12,12 @@ import java.util.logging.Logger;
 
 @DisplayName("Teste Web do Modulo de Produtos")
 public class ProdutosTest {
-
-
     private WebDriver navegador;
     //private static final Logger logger = LogManager.getLogManager().getLogger("compras");
     private static Logger logger = Logger.getLogger(String.valueOf(ProdutosTest.class));
-@BeforeEach
+    @BeforeEach
     public void beforeEach(){
-     // Abrir navegador
+        // Abrir navegador
         System.setProperty("webdriver.chrome.driver","C:\\AutomaçaoTestesWeb\\chromedriver_win32\\chromedriver.exe");
         this.navegador = new ChromeDriver();
 
@@ -31,8 +29,8 @@ public class ProdutosTest {
 
         // Navegar para a pagina da lojinha Web
         this.navegador.get("https://www.demoblaze.com/index.html");
+    }
 
-}
     //public class Main {
         //public static void main(String[] args) {
             // Configurar os detalhes de conexão
@@ -60,78 +58,73 @@ public class ProdutosTest {
    // }
 
              // Teste efetuar uma comprar de celular e efetuar o pagamento
-@Test
-@DisplayName("Comprar telefones celular")
+    @Test
+    @DisplayName("Comprar telefones celular")
     public void testComprarTelefonesCelular() throws AWTException {
+        // logger.info("Comprando um telefone");
+        //fazer o login
+        String vendasPhones = new LoginCadastroPage(navegador)
+                .clicaAcesso()  // Abre a tela de usuario
+                .cadastroUsuario("Renato de Oliveira 840", "123456") // Informa o username e password do usuário
+                .loginAcessoUsuario()
+                .acessoUsuario("Renato de Oliveira 840", "123456")
+                .selecionarCategoriaPhones()
+                .escolherPhones()
+                .addProdutoNoCarrinho()
+                .pagamentoProdutos()
+                .pagamentoButton()
+                .cadastroDePagamento("Renato De Oliveira ", " BRASIL", "São Paulo", "123456789111", "11", "2028")
+                .finalizarCompra().toString();
 
-   // logger.info("Comprando um telefone");
-    //fazer o login
-
-    String vendasPhones = new LoginCadastroPage(navegador)
-            .clicaAcesso()  // Abre a tela de usuario
-            .cadastroUsuario("Renato de Oliveira 839", "123456") // Informa o username e password do usuário
-            .loginAcessoUsuario()
-            .acessoUsuario("Renato de Oliveira 839", "123456")
-            .selecionarCategoriaPhones()
-            .escolherPhones()
-            .addProdutoNoCarrinho()
-            .pagamentoProdutos()
-            .pagamentoButton()
-            .cadastroDePagamento("Renato De Oliveira ", " BRASIL", "São Paulo", "123456789111", "11", "2028")
-            .finalizarCompra().toString();
-
-            logger.info("Testando ");
-
+        logger.info("Testando ");
     }
 
+    /**
+     * Teste para acessar o carrinho a cancelar uma compra
+     * @throws AWTException
+     */
+    @Test
+    @DisplayName("Cancelamento de compra")
+    public void testCancelamentoCompra() throws AWTException {
+        //fazer o login
 
-                  //Teste para acessar o carrinho a cancelar uma compra
-@Test
-@DisplayName("Cancelamento de compra")
-public void testCancelamentoCompra() throws AWTException {
-    //fazer o login
+        String cancelamentoCompra = new LoginCadastroPage(navegador)
+                .clicaAcesso()  // Abre a tela de usuario
+                .cadastroUsuario("Renato de Oliveira 302", "123456") // Informa o username e password do usuário
+                .loginAcessoUsuario()
+                .acessoUsuario("Renato de Oliveira 302", "123456")
+                .selecionarCategoriaPhones()
+                .escolherPhones()
+                .addProdutoNoCarrinho()
+                .pagamentoProdutos()
+                .pagamentoButton()
+                .cadastroDePagamento("Renato De Oliveira "," BRASIL","São Paulo","123456789111","11","2028")
+                .btnCancelar().toString();
+    }
 
-    String cancelamentoCompra = new LoginCadastroPage(navegador)
-            .clicaAcesso()  // Abre a tela de usuario
-            .cadastroUsuario("Renato de Oliveira 302", "123456") // Informa o username e password do usuário
-            .loginAcessoUsuario()
-            .acessoUsuario("Renato de Oliveira 302", "123456")
-            .selecionarCategoriaPhones()
-            .escolherPhones()
-            .addProdutoNoCarrinho()
-            .pagamentoProdutos()
-            .pagamentoButton()
-            .cadastroDePagamento("Renato De Oliveira "," BRASIL","São Paulo","123456789111","11","2028")
-            .btnCancelar().toString();
-
-}
-
-                      // Teste usuário compra o produto e vai no carrinho excluir o produto
-@Test
-@DisplayName("Deletar o produto do carrinho")
-
-public void testDeletarProdutodoCarrinhoNoPagamento() throws AWTException {
-    //fazer o login
-
-    String deletarProdutodoCarrinhoNoPagamento = new LoginCadastroPage(navegador)
-            // .clicaAcesso()  // Abre a tela de usuario
-            //.cadastroUsuario("Jack Silva teste77", "12345678") // Informa o username e password do usuário
-            .loginAcessoUsuario()
-            .acessoUsuario("Renato de Oliveira 100", "123456")
-            .selecionarCategoriaPhones()
-            .escolherPhones()
-            .addProdutoNoCarrinho()
-            .pagamentoProdutos()
-            .pagamentoButton()
-            .cadastroDePagamento("Renato De Oliveira "," BRASIL","São Paulo","123456789111","11","2028")
-            //.btnCancelar().toString();
-            .btnExcluir().toString();
-}
- @Test
+    // Teste usuário compra o produto e vai no carrinho excluir o produto
+    @Test
+    @DisplayName("Deletar o produto do carrinho")
+    public void testDeletarProdutodoCarrinhoNoPagamento() throws AWTException {
+        //fazer o login
+        String deletarProdutodoCarrinhoNoPagamento = new LoginCadastroPage(navegador)
+                // .clicaAcesso()  // Abre a tela de usuario
+                //.cadastroUsuario("Jack Silva teste77", "12345678") // Informa o username e password do usuário
+                .loginAcessoUsuario()
+                .acessoUsuario("Renato de Oliveira 100", "123456")
+                .selecionarCategoriaPhones()
+                .escolherPhones()
+                .addProdutoNoCarrinho()
+                .pagamentoProdutos()
+                .pagamentoButton()
+                .cadastroDePagamento("Renato De Oliveira "," BRASIL","São Paulo","123456789111","11","2028")
+                //.btnCancelar().toString();
+                .btnExcluir().toString();
+    }
+     @Test
     @DisplayName("Excluir Produtos Do Carrinho")
     public void testExcluirProdutosDoCarrinho() throws AWTException {
         //fazer o login
-
         String excluirProdutosDoCarrinho = new LoginCadastroPage(navegador)
                 // .clicaAcesso()  // Abre a tela de usuario
                 //.cadastroUsuario("Jack Silva teste77", "12345678") // Informa o username e password do usuário
@@ -211,7 +204,6 @@ public void testDeletarProdutodoCarrinhoNoPagamento() throws AWTException {
 
     @Test
     @DisplayName("Clicando no botão Contact")
-
     public void testClicandoNoBotaoContact() throws AWTException {
         //fazer o login
 
@@ -233,12 +225,12 @@ public void testDeletarProdutodoCarrinhoNoPagamento() throws AWTException {
 
       // Assertions.assertFalse("Thanks for the message!!".isEmpty(), acessarFormulario );
        // System.out.println(acessarFormulario);
-}
-//@AfterEach
-//public void afterEach(){
-   // navegador.quit();
-//}
+    }
 
+    //@AfterEach
+    //public void afterEach(){
+       // navegador.quit();
+    //}
 
     @Test
     @DisplayName("Clicando no botão About us")
@@ -254,9 +246,7 @@ public void testDeletarProdutodoCarrinhoNoPagamento() throws AWTException {
         //Assertions.assertEquals("Pagamento finalizado com sucesso",acessarAboutUs );
 
     }
-
-
-    }
+}
 
 
 

@@ -16,6 +16,7 @@ public class InicialPage {
 
     public InicialPage(WebDriver navegador) {
         this.navegador = navegador;
+        this.wait = new WebDriverWait(navegador, Duration.ofSeconds(30));
     }
 
     public InicialPage selecionarCategoriaPhones(){

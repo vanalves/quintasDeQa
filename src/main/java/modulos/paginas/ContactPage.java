@@ -1,5 +1,6 @@
 package modulos.paginas;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -42,6 +43,7 @@ public class ContactPage {
             WebDriverWait wait = new WebDriverWait(navegador, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.alertIsPresent());
             Alert alert = navegador.switchTo().alert();
+            Assertions.assertEquals("Thanks for the message!!", alert.getText());
             alert.accept();
         } catch (Exception e) {
             //handle the exception
